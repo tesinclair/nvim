@@ -1,5 +1,3 @@
-
-
 local lsp_zero = require('lsp-zero')
 
 lsp_zero.on_attach(function(client, bufnr)
@@ -14,9 +12,10 @@ require("mason-lspconfig").setup()
 
 -- After setting up mason-lspconfig you may set up servers via lspconfig
 require("lspconfig").lua_ls.setup {}
-require("lspconfig").clangd.setup {}
+require("lspconfig").ccls.setup {}
 require("lspconfig").cmake.setup {}
 require("lspconfig").emmet_language_server.setup {}
 require("lspconfig").tsserver.setup {}
 require("lspconfig").intelephense.setup {}
 require("lspconfig").pylyzer.setup {}
+
