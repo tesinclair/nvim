@@ -70,3 +70,6 @@ vim.keymap.set('n', '<leader>uu', ':u<CR>')
 -- exit to current dir
 vim.keymap.set('n', '<leader>qc', ':lua exit_current_dir()<CR>')
 
+-- Change normal mode to n, cos esc is pretty far
+vim.keymap.set('v', 'jkl;', '<Esc>')
+vim.keymap.set('i', 'jkl;', '<Esc>')
