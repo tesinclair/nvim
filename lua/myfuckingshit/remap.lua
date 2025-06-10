@@ -49,8 +49,8 @@ vim.keymap.set('n', '<leader>ca', 'ggVG"+y<Esc>')
 
 -- Making :w and :wq easier
 vim.keymap.set('n', '<leader>w', ':w<CR>')
-vim.keymap.set('n', '<leader>wq', ':wq<CR>')
-vim.keymap.set('n', '<leader>q', ':q<CR>')
+vim.keymap.set('n', '<leader>q', ':wq<CR>')
+vim.keymap.set('n', '<leader>qq', ':q<CR>')
 
 -- u as undo really messes me up (it is way too close to p and i)
 vim.keymap.set('n', 'u', '<nop>')
@@ -63,3 +63,5 @@ vim.keymap.set('n', '<leader>cd', ':lua exit_current_dir()<CR>')
 -- if you want to start normal mode
 vim.keymap.set('v', 'hjkl', '<Esc>')
 vim.keymap.set('i', 'hjkl', '<Esc>')
+
+vim.keymap.set('n', '<leader>o', 'o<Esc>')
