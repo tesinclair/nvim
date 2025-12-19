@@ -21,8 +21,24 @@ require("lazy").setup({
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
-    },
-    'nvim-treesitter/playground',
+        config = function()
+            require('nvim-treesitter.configs').setup({
+                -- Your treesitter config here
+                ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
+                sync_install = false,
+                auto_install = true,
+                highlight = { enable = true },
+
+                -- Playground config goes here now
+                playground = {
+                    enable = true,
+                    disable = {},
+                    updatetime = 25,
+                    persist_queries = false,
+                },
+            })
+        end
+    }, 
 
     -- Harpoon (Explicit dependency on plenary is usually handled by lazy automatically, but safe to keep)
     {
