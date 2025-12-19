@@ -1,4 +1,5 @@
 require("myfuckingshit.plugin")
+require("myfuckingshit.lazy")
 require("myfuckingshit.remap")
 require("myfuckingshit.set")
 require("myfuckingshit.run_code")
