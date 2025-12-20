@@ -12,7 +12,9 @@ vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+
+-- FIX: Use stdpath('data') for cross-platform compatibility (Linux: ~/.local/share/nvim, Win: AppData)
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false
@@ -25,5 +27,3 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
-
-

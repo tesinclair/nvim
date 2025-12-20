@@ -1,6 +1,11 @@
 vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = { "*.tex" },
     callback = function()
+        -- FIX: Guard clause to prevent execution if tools are missing
+        if vim.fn.executable("pdflatex") == 0 then
+            return
+        end
+
         local fname = vim.api.nvim_buf_get_name(0)
         local basename = fname:match("(.+)%.tex$")
         if not basename then return end
@@ -16,17 +21,15 @@ vim.api.nvim_create_autocmd("BufWritePost", {
         -- Check if the output contains success message
         local success = output:match("Output written on")
 
-        if not success or not vim.loop.fs_stat(pdf_path) then
-            -- Compilation failed → show errors instead of the real PDF
+        -- Only run conversion if tools exist
+        if (not success or not vim.loop.fs_stat(pdf_path)) and vim.fn.executable("paps") == 1 and vim.fn.executable("ps2pdf") == 1 then
             local f = io.open(tmp_txt, "w")
             f:write("PDFLaTeX Error Output:\n\n")
             f:write(output)
             f:close()
 
-            -- Convert text error message to PDF for the viewer
             os.execute(string.format("paps %q --font='monospace 10' | ps2pdf - %q", tmp_txt, pdf_path))
             os.remove(tmp_txt)
         end
     end,
 })
-

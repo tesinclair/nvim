@@ -19,24 +19,25 @@ require("lazy").setup({
 
     -- Treesitter
     {
-        'nvim-treesitter/nvim-treesitter',
-        build = ':TSUpdate',
-        config = function()
-            require('nvim-treesitter.configs').setup({
-                -- Your treesitter config here
-                ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
-                sync_install = false,
-                auto_install = true,
-                highlight = { enable = true },
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        opts = {
+            -- Do NOT put "vim", "lua", "c", or "query" here for Nvim 0.11
+            ensure_installed = { "javascript", "python" }, 
+            
+            -- This is the magic line. It tells the plugin: 
+            -- "Do not install these, use the ones built into Neovim"
+            ignore_install = { "vim", "lua", "c", "vimdoc", "query" },
 
-                -- Playground config goes here now
-                playground = {
-                    enable = true,
-                    disable = {},
-                    updatetime = 25,
-                    persist_queries = false,
-                },
-            })
+            highlight = {
+                enable = true,
+                -- OPTIONAL: If it still crashes, uncomment the line below 
+                -- to disable treesitter specifically for vim files.
+                -- disable = { "vim" }, 
+            },
+        },
+        config = function(_, opts)
+            require("nvim-treesitter.configs").setup(opts)
         end
     }, 
 
