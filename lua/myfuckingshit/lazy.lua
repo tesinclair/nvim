@@ -21,6 +21,7 @@ require("lazy").setup({
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
+        branch = "master",
         opts = {
             -- Do NOT put "vim", "lua", "c", or "query" here for Nvim 0.11
             ensure_installed = { "javascript", "python" }, 
